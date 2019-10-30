@@ -1,0 +1,111 @@
+{
+  "bag": {
+    "bag_name": "Replicate_{rid}",
+    "bag_algorithms": [
+      "md5"
+    ],
+    "bag_archiver": "zip"
+  },
+  "catalog": {
+    "query_processors": [
+      {
+        "processor": "csv",
+        "processor_params": {
+          "output_path": "Study",
+          "query_path": "/attribute/M:=RNASeq:Replicate/RID={rid}/(Study_RID)=(RNASeq:Study:RID)/Study_RID:=RID,Internal_ID,Title,Summary,Overall_Design,GEO_Series_Accession_ID,GEO_Platform_Accession_ID,Funding,Pubmed_ID,Principal_Investigator,Consortium,Release_Date,RCT,RMT?limit=none"
+        }
+      },
+      {
+        "processor": "csv",
+        "processor_params": {
+          "output_path": "Study Analysis File",
+          "query_path": "/attribute/M:=RNASeq:Replicate/RID={rid}/(Study_RID)=(RNASeq:Study_File:Study_RID)/RID,Study_RID,Name,Description,File_Name,File_Type,URI,File_Size,MD5,Notes,Principal_Investigator,Consortium,Release_Date,RCT,RMT?limit=none"
+        }
+      },
+      {
+        "processor": "fetch",
+        "processor_params": {
+          "output_path": "assets/Study/{Study_RID}/Study_File",
+          "query_path": "/attribute/M:=RNASeq:Replicate/RID={rid}/(Study_RID)=(RNASeq:Study_File:Study_RID)/url:=URI,length:=File_Size,filename:=File_Name,md5:=MD5,Study_RID?limit=none"
+        }
+      },
+      {
+        "processor": "csv",
+        "processor_params": {
+          "output_path": "Experiment",
+          "query_path": "/attribute/M:=RNASeq:Replicate/RID={rid}/(Experiment_RID)=(RNASeq:Experiment:RID)/Experiment_RID:=RID,Study_RID,Internal_ID,Name,Description,Experiment_Method,Sequencing_Type,Species,Specimen_Type,Molecule_Type,Pooled_Sample,Pool_Size,Markers,Cell_Count,Treatment_Protocol,Treatment_Protocol_Reference,Isolation_Protocol,Isolation_Protocol_Reference,Growth_Protocol,Growth_Protocol_Reference,Label_Protocol,Label_Protocol_Reference,Hybridization_Protocol,Hybridization_Protocol_Reference,Scan_Protocol,Scan_Protocol_Reference,Data_Processing,Value_Definition,Notes,Principal_Investigator,Consortium,Release_Date,RCT,RMT?limit=none"
+        }
+      },
+      {
+        "processor": "csv",
+        "processor_params": {
+          "output_path": "Experiment Antibodies",
+          "query_path": "/entity/M:=RNASeq:Replicate/RID={rid}/(Experiment_RID)=(RNASeq:Experiment_Antibodies:Experiment_RID)?limit=none"
+        }
+      },
+      {
+        "processor": "csv",
+        "processor_params": {
+          "output_path": "Experiment Custom Metadata",
+          "query_path": "/entity/M:=RNASeq:Replicate/RID={rid}/(Experiment_RID)=(RNASeq:Experiment_Custom_Metadata:Experiment_RID)?limit=none"
+        }
+      },
+      {
+        "processor": "csv",
+        "processor_params": {
+          "output_path": "Experiment Settings",
+          "query_path": "/attribute/M:=RNASeq:Replicate/RID={rid}/(Experiment_RID)=(RNASeq:Experiment_Settings:Experiment_RID)/RID,Experiment_RID,Alignment_Format,Aligner,Aligner_Version,Reference_Genome,Sequence_Trimming,Duplicate_Removal,Pre-alignment_Sequence_Removal,Junction_Reads,Library_Type,Protocol_Reference,Library_Selection,Quantification_Format,Quantification_Software,Expression_Metric,Transcriptome_Model,Sequencing_Platform,Paired_End,Read_Length,Has_Strand_Specific_Information,Used_Spike_Ins,Spike_Ins_Amount,Visualization_Format,Visualization_Software,Visualization_Version,Visualization_Setting,Notes,RCT,RMT?limit=none"
+        }
+      },
+      {
+        "processor": "csv",
+        "processor_params": {
+          "output_path": "Replicate",
+          "query_path": "/attribute/M:=RNASeq:Replicate/RID={rid}/RID,Study_RID,Experiment_RID,Biological_Replicate_Number,Technical_Replicate_Number,Specimen_RID,Collection_Date,Mapped_Reads,GEO_Sample_Accession_ID,Notes,Principal_Investigator,Consortium,Release_Date,RCT,RMT?limit=none"
+        }
+      },
+      {
+        "processor": "csv",
+        "processor_params": {
+          "output_path": "Specimen",
+          "query_path": "/attribute/M:=RNASeq:Replicate/RID={rid}/S:=(Specimen_RID)=(Gene_Expression:Specimen:RID)/T:=left(Stage_ID)=(Vocabulary:Developmental_Stage:ID)/$S/RID,Title,Species,Stage_ID,Stage_Name:=T:Name,Stage_Detail,Assay_Type,Strain,Wild_Type,Sex,Passage,Phenotype,Cell_Line,Parent_Specimen,Upload_Notes,Preparation,Fixation,Embedding,Internal_ID,Principal_Investigator,Consortium,Release_Date,RCT,RMT,GUDMAP2_Accession_ID?limit=none"
+        }
+      },
+      {
+        "processor": "csv",
+        "processor_params": {
+          "output_path": "Specimen_Anatomical_Source",
+          "query_path": "/attribute/M:=RNASeq:Replicate/RID={rid}/(Specimen_RID)=(Gene_Expression:Specimen:RID)/(RID)=(Gene_Expression:Specimen_Tissue:Specimen_RID)/RID,Specimen_RID,Tissue,RCT,RMT?limit=none"
+        }
+      },
+      {
+        "processor": "csv",
+        "processor_params": {
+          "output_path": "Specimen_Cell_Types",
+          "query_path": "/attribute/M:=RNASeq:Replicate/RID={rid}/(Specimen_RID)=(Gene_Expression:Specimen:RID)/(RID)=(Gene_Expression:Specimen_Cell_Type:Specimen)/RID,Specimen_RID:=Specimen,Cell_Type,RCT,RMT?limit=none"
+        }
+      },
+      {
+        "processor": "csv",
+        "processor_params": {
+          "output_path": "Single Cell Metrics",
+          "query_path": "/attribute/M:=RNASeq:Replicate/RID={rid}/(RID)=(RNASeq:Single_Cell_Metrics:Replicate_RID)/RID,Study_RID,Experiment_RID,Replicate_RID,Reads_%28Millions%29,Reads%2FCell,Detected_Gene_Count,Genes%2FCell,UMI%2FCell,Estimated_Cell_Count,Principal_Investigator,Consortium,Release_Date,RCT,RMT?limit=none"
+        }
+      },
+      {
+        "processor": "csv",
+        "processor_params": {
+          "output_path": "File",
+          "query_path": "/attribute/M:=RNASeq:Replicate/RID={rid}/(RID)=(RNASeq:File:Replicate_RID)/RID,Study_RID,Experiment_RID,Replicate_RID,Caption,File_Type,File_Name,URI,File_size,MD5,GEO_Archival_URL,dbGaP_Accession_ID,Processed,Notes,Principal_Investigator,Consortium,Release_Date,RCT,RMT,Legacy_File_RID,GUDMAP_NGF_OID,GUDMAP_NGS_OID?limit=none"
+        }
+      },
+      {
+        "processor": "fetch",
+        "processor_params": {
+          "output_path": "assets/Study/{Study_RID}/Experiment/{Experiment_RID}/Replicate/{Replicate_RID}",
+          "query_path": "/attribute/M:=RNASeq:Replicate/RID={rid}/(RID)=(RNASeq:File:Replicate_RID)/url:=URI,length:=File_size,filename:=File_Name,md5:=MD5,Study_RID,Experiment_RID,Replicate_RID?limit=none"
+        }
+      }
+    ]
+  }
+}
