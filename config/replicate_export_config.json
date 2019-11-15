@@ -18,20 +18,6 @@
       {
         "processor": "csv",
         "processor_params": {
-          "output_path": "Study Analysis File",
-          "query_path": "/attribute/M:=RNASeq:Replicate/RID={rid}/(Study_RID)=(RNASeq:Study_File:Study_RID)/RID,Study_RID,Name,Description,File_Name,File_Type,URI,File_Size,MD5,Notes,Principal_Investigator,Consortium,Release_Date,RCT,RMT?limit=none"
-        }
-      },
-      {
-        "processor": "fetch",
-        "processor_params": {
-          "output_path": "assets/Study/{Study_RID}/Study_File",
-          "query_path": "/attribute/M:=RNASeq:Replicate/RID={rid}/(Study_RID)=(RNASeq:Study_File:Study_RID)/url:=URI,length:=File_Size,filename:=File_Name,md5:=MD5,Study_RID?limit=none"
-        }
-      },
-      {
-        "processor": "csv",
-        "processor_params": {
           "output_path": "Experiment",
           "query_path": "/attribute/M:=RNASeq:Replicate/RID={rid}/(Experiment_RID)=(RNASeq:Experiment:RID)/Experiment_RID:=RID,Study_RID,Internal_ID,Name,Description,Experiment_Method,Sequencing_Type,Species,Specimen_Type,Molecule_Type,Pooled_Sample,Pool_Size,Markers,Cell_Count,Treatment_Protocol,Treatment_Protocol_Reference,Isolation_Protocol,Isolation_Protocol_Reference,Growth_Protocol,Growth_Protocol_Reference,Label_Protocol,Label_Protocol_Reference,Hybridization_Protocol,Hybridization_Protocol_Reference,Scan_Protocol,Scan_Protocol_Reference,Data_Processing,Value_Definition,Notes,Principal_Investigator,Consortium,Release_Date,RCT,RMT?limit=none"
         }
