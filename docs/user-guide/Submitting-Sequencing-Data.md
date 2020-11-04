@@ -248,3 +248,4 @@ _Answer_: You can run the following command in the shell prompt to combine R1.fa
 # rename all the the files you want to combine to match <something>.R1.fastq.gz
 # this code will combine all files that match that naming convention in that folder... so don't mix replicates
 > cat *.R1.fastq.gz > RID_concat.R1.fastq.gz
+```
