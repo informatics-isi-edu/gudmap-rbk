@@ -7,5 +7,5 @@ This is the home of public documentation for the GUDMAP/RBK Consortiums. If you 
 
 Within this documentation:
 
-- [User's Guide](users-guide/)
-- Data Submitter's Guide (TBD)
+- [User Guide](user-guide/)
+- Data Submitter Guide (TBD)
