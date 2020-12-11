@@ -1,0 +1,64 @@
+{
+  "bag": {
+    "bag_name": "Execution_Run_{rid}",
+    "bag_algorithms": [
+      "md5"
+    ],
+    "bag_archiver": "zip",
+    "bag_metadata": {}
+  },
+  "catalog": {
+    "catalog_id": "2",
+    "query_processors": [
+      {
+        "processor": "csv",
+        "processor_params": {
+          "output_path": "Execution_Run",
+          "query_path": "/attribute/M:=RNASeq:Execution_Run/RID=17-BPAG/RID,Replicate_RID:=Replicate,Workflow_RID:=Workflow,Reference_Genone_RID:=Reference_Genome,Input_Bag_RID:=Input_Bag,Notes,Execution_Status,Execution_Status_Detail,RCT,RMT?limit=none"
+        }
+      },
+      {
+        "processor": "csv",
+        "processor_params": {
+          "output_path": "Workflow",
+          "query_path": "/entity/M:=RNASeq:Execution_Run/RID=17-BPAG/RNASeq:Workflow?limit=none"
+        }
+      },
+      {
+        "processor": "csv",
+        "processor_params": {
+          "output_path": "Reference_Genome",
+          "query_path": "/entity/M:=RNASeq:Execution_Run/RID=17-BPAG/RNASeq:Reference_Genome?limit=none"
+        }
+      },
+      {
+        "processor": "csv",
+        "processor_params": {
+          "output_path": "Input_Bag",
+          "query_path": "/entity/M:=RNASeq:Execution_Run/RID=17-BPAG/RNASeq:Input_Bag?limit=none"
+        }
+      },
+      {
+        "processor": "csv",
+        "processor_params": {
+          "output_path": "mRNA_QC",
+          "query_path": "/attribute/M:=RNASeq:Execution_Run/RID=17-BPAG/(RID)=(RNASeq:mRNA_QC:Execution_Run)/RID,Execution_Run_RID:=Execution_Run,Replicate_RID:=Replicate,Paired_End,Strandedness,Median_Read_Length,Raw_Count,Final_Count,Notes,RCT,RMT?limit=none"
+        }
+      },
+      {
+        "processor": "fetch",
+        "processor_params": {
+          "output_path": "assets/Study/{Study_RID}/Experiment/{Experiment_RID}/Replicate/{Replicate_RID}/Execution_Run/{Execution_Run_RID}/Output_Files",
+          "query_path": "/attribute/M:=RNASeq:Execution_Run/RID=17-BPAG/R:=RNASeq:Replicate/$M/(RID)=(RNASeq:Processed_File:Execution_Run)/url:=File_URL,length:=File_Bytes,filename:=File_Name,md5:=File_MD5,Execution_Run_RID:=M:RID,Study_RID:=R:Study_RID,Experiment_RID:=R:Experiment_RID,Replicate_RID:=R:RID?limit=none"
+        }
+      },
+      {
+        "processor": "fetch",
+        "processor_params": {
+          "output_path": "assets/Study/{Study_RID}/Experiment/{Experiment_RID}/Replicate/{Replicate_RID}/Execution_Run/{Execution_Run_RID}/Input_Bag",
+          "query_path": "/attribute/M:=RNASeq:Execution_Run/RID=17-BPAG/R:=RNASeq:Replicate/$M/RNASeq:Input_Bag/url:=File_URL,length:=File_Bytes,filename:=File_Name,md5:=File_MD5,Execution_Run_RID:=M:RID,Study_RID:=R:Study_RID,Experiment_RID:=R:Experiment_RID,Replicate_RID:=R:RID?limit=none"
+        }
+      }
+    ]
+  }
+}
