@@ -89,7 +89,7 @@
         "processor": "fetch",
         "processor_params": {
           "output_path": "assets/Study/{Study_RID}/Experiment/{Experiment_RID}/Replicate/{Replicate_RID}",
-          "query_path": "/attribute/M:=RNASeq:Replicate/RID={rid}/(RID)=(RNASeq:File:Replicate_RID)/File_Type=FastQ/url:=URI,length:=File_size,filename:=File_Name,md5:=MD5,Study_RID,Experiment_RID,Replicate_RID?limit=none"
+          "query_path": "/attribute/M:=RNASeq:Replicate/RID={rid}/(RID)=(RNASeq:File:Replicate_RID)/File_Type=FastQ/File_Name::ciregexp::%5B_.%5DR%5B12%5D%5C.fastq%5C.gz/url:=URI,length:=File_size,filename:=File_Name,md5:=MD5,Study_RID,Experiment_RID,Replicate_RID?limit=none"
         }
       }
     ]
